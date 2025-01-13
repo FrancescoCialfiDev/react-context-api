@@ -22,8 +22,10 @@ export const App = () => {
   const getData = () => {
     axios
       .get("http://localhost:3000/foods")
-      .then((res) =>
-        setReactData(res.data.foods))
+      .then((res) => {
+        console.log("Response data:", res.data.foods);
+        setReactData(res.data.foods);
+      })
       .catch((error) => console.error(error))
       .finally(() => console.log("Data fetch completed"));
   };
@@ -35,7 +37,7 @@ export const App = () => {
   return (
 
     <>
-      < GlobalContext.Provider value={reactData} >
+      < GlobalContext.Provider value={{ reactData }} >
         <BrowserRouter>                                          {/* BrowserRouter avvolge tutta l'app e abilita il routing */}
           <Routes>
 
